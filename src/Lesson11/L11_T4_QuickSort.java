@@ -2,8 +2,8 @@ package Lesson11;
 
 public class L11_T4_QuickSort {
     public static void main(String[] args) {
-        int[] array = new int[]{36, 3, 1, 5, 7, 453, 3, 8, 4, 3};
-
+//        int[] array = new int[]{36, 3, 1, 5, 7, 453, 3, 8, 4, 3};
+        int[] array = new int[]{36, 3, 9, 5, 7, 15, 3, 8, 4, 1};
         quickSort(array, 0, array.length - 1);
         System.out.println("Отсортированный массив:");
         for (int element : array) {
@@ -24,35 +24,35 @@ public class L11_T4_QuickSort {
             return;
         }
         int support = a[left];
-        int countLeft = left;
-        int countRight = right;
+        int i = left;
+        int j = right;
 
-        while (countLeft <= countRight) {
-            while (support > a[countLeft]) {
-                countLeft++;
-                if (countLeft > countRight) {
-                    break;
-                }
+        while (i <= j) {
+            while (support > a[i]) {
+                i++;
+//                if (countLeft > countRight) {
+//                    break;
+//                }
             }
-            while (support < a[countRight]) {
-                countRight--;
-                if (countRight < countLeft) {
-                    break;
-                }
+            while (support < a[j]) {
+                j--;
+//                if (countRight < countLeft) {
+//                    break;
+//                }
             }
-            if (countLeft <= countRight) {
-                int tmp = a[countRight];
-                a[countRight] = a[countLeft];
-                a[countLeft] = tmp;
-                countLeft++;
-                countRight--;
+            if (i <= j) {
+                int tmp = a[j];
+                a[j] = a[i];
+                a[i] = tmp;
+                i++;
+                j--;
             }
         }
-        if (countLeft < right) {
-            quickSort(a, countLeft, right);
+        if (i < right) {
+            quickSort(a, i, right);
         }
-        if (countRight > left) {
-            quickSort(a, left, countRight);
+        if (j > left) {
+            quickSort(a, left, j);
         }
     }
 }

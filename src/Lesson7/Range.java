@@ -30,7 +30,8 @@ public class Range {
     }
 
     public boolean isInside(double a) {
-        return this.from <= a && this.to >= a;
+        if (this.from <= a) if (this.to >= a) return true;
+        return false;
     }
 
 }

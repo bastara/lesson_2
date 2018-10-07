@@ -5,7 +5,7 @@
 the sites and BBS's listed below.  Most of them are FIDONET-nodes, so
 you can request the latest version of FAR, via file request, using
 the magic name of 'FAR'.
-
+LAlalalaLALA
 NOTE:  This list is distributed with the current version of FAR and may not
        be up-to-date.  For the latest FAR_SITE list please visit our website
        at
