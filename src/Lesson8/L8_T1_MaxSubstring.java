@@ -2,7 +2,7 @@ package Lesson8;
 
 public class L8_T1_MaxSubstring {
     public static void main(String[] args) {
-        String source = "ааааааккЕЕЕЕЕееЕннррртттттВВВвввВВвввввВВвуцыф";
+        String source = "аааа    2222233ааккЕЕЕЕЕееЕннррртттттВВВвввВВвввввВВвуцыф";
 
         System.out.println("Максимальная длина символов составляет " + getLengthMaxSubstring(source));
     }

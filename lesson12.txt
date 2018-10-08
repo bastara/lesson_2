@@ -2,7 +2,7 @@
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    The latest version of FAR and support conferences are available at
-the sites and BBS's listed below.  Most of them are FIDONET-nodes, so
+the sites and BBS's listed below.  Most of them are FIDONET-nodes, solA
 you can request the latest version of FAR, via file request, using
 the magic name of 'FAR'.
 LAlalalaLALA
