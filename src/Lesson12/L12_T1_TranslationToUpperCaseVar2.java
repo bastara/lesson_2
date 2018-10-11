@@ -10,18 +10,12 @@ public class L12_T1_TranslationToUpperCaseVar2 {
         try (PrintWriter writer = new PrintWriter("output.txt");
              Scanner scanner = new Scanner(new FileInputStream("lesson12.txt"))) {
 
-            StringBuilder sb = new StringBuilder();
             while (scanner.hasNext()) {
-                sb.append(scanner.nextLine()).append("\n");
+                writer.println(scanner.nextLine().toUpperCase());
             }
 
-            writer.println(convertToUpperCase(sb.toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static String convertToUpperCase(String str) {
-        return str.toUpperCase();
     }
 }

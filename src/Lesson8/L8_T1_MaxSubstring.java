@@ -21,7 +21,7 @@ public class L8_T1_MaxSubstring {
             } else {
                 tmpLength = 1;
             }
-            if (tmpLength > maxLength) {//как лучше сделать-что бы при каждой итерации проверка была или только при смене буквы и еще раз после цикла? Пока так сделал-так короче.
+            if (tmpLength > maxLength) {
                 maxLength = tmpLength;
             }
         }
