@@ -18,7 +18,8 @@ public class L13_T2_Blur {
         final int COLORS_COUNT_IN_RGB = 3;
 
         int[] pixel = new int[COLORS_COUNT_IN_RGB];
-        WritableRaster tmpRaster = raster;
+        BufferedImage tmpImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+        WritableRaster tmpRaster = tmpImage.getRaster();
 
         for (int j = 1; j < height - 1; ++j) {
             for (int i = 1; i < width - 1; ++i) {
@@ -31,18 +32,18 @@ public class L13_T2_Blur {
                 for (int k = j - 1; k <= j + 1; k++) {
                     for (int m = i - 1; m <= i + 1; m++) {
                         raster.getPixel(m, k, pixelAround);
-                        arrayPixel[m - i + 1][k - j + 1][0] = pixelAround[0] / 9;
-                        arrayPixel[m - i + 1][k - j + 1][1] = pixelAround[1] / 9;
-                        arrayPixel[m - i + 1][k - j + 1][2] = pixelAround[2] / 9;
+                        arrayPixel[m - i + 1][k - j + 1][0] = pixelAround[0];
+                        arrayPixel[m - i + 1][k - j + 1][1] = pixelAround[1];
+                        arrayPixel[m - i + 1][k - j + 1][2] = pixelAround[2];
                         //в этом же цикле вычисляем RGB пикселя который подвергается размытиюю либо для других эффектов
-                        pixel[0] += arrayPixel[m - i + 1][k - j + 1][0];
-                        pixel[1] += arrayPixel[m - i + 1][k - j + 1][1];
-                        pixel[2] += arrayPixel[m - i + 1][k - j + 1][2];
+                        pixel[0] += arrayPixel[m - i + 1][k - j + 1][0] / 9;
+                        pixel[1] += arrayPixel[m - i + 1][k - j + 1][1] / 9;
+                        pixel[2] += arrayPixel[m - i + 1][k - j + 1][2] / 9;
                     }
                 }
                 tmpRaster.setPixel(i, j, pixel);
             }
         }
-        ImageIO.write(image, "png", new File("out.png"));
+        ImageIO.write(tmpImage, "png", new File("out.png"));
     }
 }

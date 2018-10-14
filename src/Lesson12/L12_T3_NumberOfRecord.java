@@ -9,7 +9,7 @@ public class L12_T3_NumberOfRecord {
         try (Scanner scanner = new Scanner(new FileInputStream("lesson12.txt"))) {
             StringBuilder str = new StringBuilder();
             while (scanner.hasNext()) {
-                str.append(scanner.nextLine().toLowerCase());
+                str.append(scanner.nextLine()).append(System.lineSeparator());
             }
 
             String pattern = "la";
@@ -19,11 +19,13 @@ public class L12_T3_NumberOfRecord {
         }
     }
 
-    private static int getRecordCount(String str, String pattern) {
+    private static int getRecordCount(String s, String p) {
+        String str = s.toLowerCase();
+        String pattern = p.toLowerCase();
         int countSymbol = 0;
         int pos = 0;
         for (; ; ) {
-            pos = str.indexOf(pattern.toLowerCase(), pos);
+            pos = str.indexOf(pattern, pos);
             if (pos >= 0) {
                 countSymbol++;
                 pos = pos + pattern.length();
@@ -33,5 +35,4 @@ public class L12_T3_NumberOfRecord {
         }
         return countSymbol;
     }
-
 }
