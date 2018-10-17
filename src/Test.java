@@ -28,32 +28,32 @@ public class Test {
         System.out.println("метод split со специальным разделителем: " + Arrays.toString(numbers));
 
 
-        String expression = "100.2+3+7";
-
-        String inBracketsArr[] = expression.split("[-/*+]");
-        double numArr[] = new double[inBracketsArr.length];
-        System.out.println(inBracketsArr[0]);
-        System.out.println(inBracketsArr[1]);
-        System.out.println(inBracketsArr[2]);
-
-
-        String s = "  --abc  678 .. Z";
-
-        System.out.println("End " + delNoDigOrLet(s));
+//        String expression = "100.2+3+7";
+//
+//        String inBracketsArr[] = expression.split("[-/*+]");
+//        double numArr[] = new double[inBracketsArr.length];
+//        System.out.println(inBracketsArr[0]);
+//        System.out.println(inBracketsArr[1]);
+//        System.out.println(inBracketsArr[2]);
+//
+//
+//        String s = "  --abc  678 .. Z";
+//
+//        System.out.println("End " + delNoDigOrLet(s));
 
 
     }
 
 
-    private static String delNoDigOrLet(String s) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            if (Character.isLetterOrDigit(s.charAt(i)))
-                sb.append(s.charAt(i));
-        }
-        return sb.toString();
+//    private static String delNoDigOrLet(String s) {
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < s.length(); i++) {
+//            if (Character.isLetterOrDigit(s.charAt(i)))
+//                sb.append(s.charAt(i));
+//        }
+//        return sb.toString();
     }
-}
+
 
 
 

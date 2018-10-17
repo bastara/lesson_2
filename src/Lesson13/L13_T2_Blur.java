@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class L13_T2_Blur {
     public static void main(String[] args) throws IOException {
@@ -17,28 +18,43 @@ public class L13_T2_Blur {
 
         final int COLORS_COUNT_IN_RGB = 3;
 
-        int[] pixel = new int[COLORS_COUNT_IN_RGB];
+        double[] pixel = new double[COLORS_COUNT_IN_RGB];
         BufferedImage tmpImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
         WritableRaster tmpRaster = tmpImage.getRaster();
 
-        for (int j = 1; j < height - 1; ++j) {
-            for (int i = 1; i < width - 1; ++i) {
+        Scanner scanner = new Scanner(System.in);
+        int radius;
+        do {
+            System.out.print("Введите коэффициент размытия (>3, нечетное число ");
+            radius = scanner.nextInt();
+        } while (radius <= 3 || radius % 2 == 0);
+        double e = (double) 1 / (radius * radius);
+        double[][] blur = new double[radius][radius];
+        for (int i = 0; i < radius; i++) {
+            for (int j = 0; j < radius; j++) {
+                blur[j][i] = e;
+            }
+        }
+        int border = radius / 2;
+        for (int j = border; j < height - border; ++j) {
+            for (int i = border; i < width - border; ++i) {
                 pixel[0] = 0;
                 pixel[1] = 0;
                 pixel[2] = 0;
-                //создаем матрицу RGB соседних элементов
                 int[] pixelAround = new int[COLORS_COUNT_IN_RGB];
-                int[][][] arrayPixel = new int[3][3][3];
-                for (int k = j - 1; k <= j + 1; k++) {
-                    for (int m = i - 1; m <= i + 1; m++) {
+                for (int k = j - border; k <= j + border; k++) {
+                    for (int m = i - border; m <= i + border; m++) {
                         raster.getPixel(m, k, pixelAround);
-                        arrayPixel[m - i + 1][k - j + 1][0] = pixelAround[0];
-                        arrayPixel[m - i + 1][k - j + 1][1] = pixelAround[1];
-                        arrayPixel[m - i + 1][k - j + 1][2] = pixelAround[2];
-                        //в этом же цикле вычисляем RGB пикселя который подвергается размытиюю либо для других эффектов
-                        pixel[0] += arrayPixel[m - i + 1][k - j + 1][0] / 9;
-                        pixel[1] += arrayPixel[m - i + 1][k - j + 1][1] / 9;
-                        pixel[2] += arrayPixel[m - i + 1][k - j + 1][2] / 9;
+                        pixel[0] += pixelAround[0] * blur[m - i + border][k - j + border];
+                        pixel[1] += pixelAround[1] * blur[m - i + border][k - j + border];
+                        pixel[2] += pixelAround[2] * blur[m - i + border][k - j + border];
+                    }
+                }
+                for (int k = 0; k < 3; k++) {
+                    if (pixel[k] < 0) {
+                        pixel[k] = 0;
+                    } else if (pixel[k] > 255) {
+                        pixel[k] = 255;
                     }
                 }
                 tmpRaster.setPixel(i, j, pixel);
