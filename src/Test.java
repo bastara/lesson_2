@@ -3,6 +3,18 @@ import java.util.Arrays;
 public class Test {
 
     public static void main(String args[]) {
+
+        String str = "+asdAD++asd+asdasd++asd++++A";
+
+        String[] arr = new String[1];
+        arr[0] = "\\+\\+";
+        System.out.println(str.replaceAll(arr[0], ""));
+
+        Object o = "123";  //o хранит Integer
+        String s2 = (String) o;
+
+        System.out.println(s2);
+
         char[] Str1 = {'п', 'р', 'и', 'в', 'е', 'т', ' ', 'м', 'и', 'р'};
         String Str2 = "";
 
@@ -13,9 +25,9 @@ public class Test {
         System.out.println("Возвращаемая строка: " + Str2);
 
 
-        String line = "50 44 33.2";
+        String line = "50 44 33.2 22 33 44 55 66";
         String[] words = line.split(" ");
-        String[] twoWords = line.split(" ", 2);
+        String[] twoWords = line.split(" ", 3);
         System.out.println("Используем разделитель: " + Arrays.toString(words));
         System.out.println();
         System.out.println(words[0]);
@@ -52,7 +64,7 @@ public class Test {
 //                sb.append(s.charAt(i));
 //        }
 //        return sb.toString();
-    }
+}
 
 
 

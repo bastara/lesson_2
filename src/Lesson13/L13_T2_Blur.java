@@ -16,26 +16,28 @@ public class L13_T2_Blur {
         int width = raster.getWidth();
         int height = raster.getHeight();
 
-        final int COLORS_COUNT_IN_RGB = 3;
-
-        double[] pixel = new double[COLORS_COUNT_IN_RGB];
         BufferedImage tmpImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
         WritableRaster tmpRaster = tmpImage.getRaster();
 
         Scanner scanner = new Scanner(System.in);
-        int radius;
+        int diameter;
+        int minDiameter = 3;
         do {
-            System.out.print("Введите коэффициент размытия (>3, нечетное число ");
-            radius = scanner.nextInt();
-        } while (radius <= 3 || radius % 2 == 0);
-        double e = (double) 1 / (radius * radius);
-        double[][] blur = new double[radius][radius];
-        for (int i = 0; i < radius; i++) {
-            for (int j = 0; j < radius; j++) {
+            System.out.print("Введите коэффициент размытия (>=3, нечетное число) ");
+            diameter = scanner.nextInt();
+        } while (diameter < minDiameter || diameter % 2 == 0);
+
+        double e = (double) 1 / (diameter * diameter);
+        double[][] blur = new double[diameter][diameter];
+        for (int i = 0; i < diameter; i++) {
+            for (int j = 0; j < diameter; j++) {
                 blur[j][i] = e;
             }
         }
-        int border = radius / 2;
+
+        final int COLORS_COUNT_IN_RGB = 3;
+        double[] pixel = new double[COLORS_COUNT_IN_RGB];
+        int border = diameter / 2;
         for (int j = border; j < height - border; ++j) {
             for (int i = border; i < width - border; ++i) {
                 pixel[0] = 0;
@@ -50,6 +52,7 @@ public class L13_T2_Blur {
                         pixel[2] += pixelAround[2] * blur[m - i + border][k - j + border];
                     }
                 }
+
                 for (int k = 0; k < 3; k++) {
                     if (pixel[k] < 0) {
                         pixel[k] = 0;
