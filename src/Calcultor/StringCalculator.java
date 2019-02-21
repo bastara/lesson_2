@@ -21,10 +21,11 @@ public class StringCalculator {
         frame.setLayout(new GridBagLayout());
 
         JLabel inputLabel = new JLabel("Введите выражение");
-        JLabel printLabel = new JLabel("Полученный резудьтат");
+        JLabel printLabel = new JLabel("Полученный результат");
 
         final JTextField inputField = new JTextField(30);
         final JTextField printField = new JTextField();
+        printField.setEditable(false);
 
         JButton myButton = new JButton("Рассчитать");
         JButton myButtonClear = new JButton("Очистить");

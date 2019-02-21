@@ -30,15 +30,10 @@ public class L11_T4_QuickSort {
         while (i <= j) {
             while (support > a[i]) {
                 i++;
-//                if (countLeft > countRight) {
-//                    break;
-//                }
             }
             while (support < a[j]) {
                 j--;
-//                if (countRight < countLeft) {
-//                    break;
-//                }
+
             }
             if (i <= j) {
                 int tmp = a[j];

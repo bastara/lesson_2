@@ -1,43 +1,57 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class Test {
 
     public static void main(String args[]) {
 
-        String str = "+asdAD++asd+asdasd++asd++++A";
+        List<Integer> list = new ArrayList<>(asList(1, 3, 43, -9, 0, 18));
+        System.out.println(list);
+//true
+        System.out.println(list.subList(0, 3).contains(43));
+//false
+        System.out.println(list.subList(0, 3).contains(-9));
+//delete 3 elements
+        list.subList(0, 3).clear();
+        System.out.println(list);
 
-        String[] arr = new String[1];
-        arr[0] = "\\+\\+";
-        System.out.println(str.replaceAll(arr[0], ""));
-
-        Object o = "123";  //o хранит Integer
-        String s2 = (String) o;
-
-        System.out.println(s2);
-
-        char[] Str1 = {'п', 'р', 'и', 'в', 'е', 'т', ' ', 'м', 'и', 'р'};
-        String Str2 = "";
-
-        Str2 = Str2.copyValueOf(Str1);
-        System.out.println("Возвращаемая строка: " + Str2);
-
-        Str2 = Str2.copyValueOf(Str1, 2, 6);
-        System.out.println("Возвращаемая строка: " + Str2);
-
-
-        String line = "50 44 33.2 22 33 44 55 66";
-        String[] words = line.split(" ");
-        String[] twoWords = line.split(" ", 3);
-        System.out.println("Используем разделитель: " + Arrays.toString(words));
-        System.out.println();
-        System.out.println(words[0]);
-        System.out.println(words[1]);
-        System.out.println(words[2]);
-        System.out.println("Разделяем на 2 строки: " + Arrays.toString(twoWords));
-        //метод split со специальным разделителем
-        String wordsSpecial = "Как|использовать|метод|split";
-        String[] numbers = wordsSpecial.split("\\|");
-        System.out.println("метод split со специальным разделителем: " + Arrays.toString(numbers));
+//        String str = "+asdAD++asd+asdasd++asd++++A";
+//
+//        String[] arr = new String[1];
+//        arr[0] = "\\+\\+";
+//        System.out.println(str.replaceAll(arr[0], ""));
+//
+//        Object o = "123";  //o хранит Integer
+//        String s2 = (String) o;
+//
+//        System.out.println(s2);
+//
+//        char[] Str1 = {'п', 'р', 'и', 'в', 'е', 'т', ' ', 'м', 'и', 'р'};
+//        String Str2 = "";
+//
+//        Str2 = Str2.copyValueOf(Str1);
+//        System.out.println("Возвращаемая строка: " + Str2);
+//
+//        Str2 = Str2.copyValueOf(Str1, 2, 6);
+//        System.out.println("Возвращаемая строка: " + Str2);
+//
+//
+//        String line = "50 44 33.2 22 33 44 55 66";
+//        String[] words = line.split(" ");
+//        String[] twoWords = line.split(" ", 3);
+//        System.out.println("Используем разделитель: " + Arrays.toString(words));
+//        System.out.println();
+//        System.out.println(words[0]);
+//        System.out.println(words[1]);
+//        System.out.println(words[2]);
+//        System.out.println("Разделяем на 2 строки: " + Arrays.toString(twoWords));
+//        //метод split со специальным разделителем
+//        String wordsSpecial = "Как|использовать|метод|split";
+//        String[] numbers = wordsSpecial.split("\\|");
+//        System.out.println("метод split со специальным разделителем: " + Arrays.toString(numbers));
 
 
 //        String expression = "100.2+3+7";
