@@ -126,6 +126,7 @@ public class Calculator {
 
         String stringNumber = "((34/(-3)+443*23/5)-12/7*3)/(-3)";
 //         String stringNumber = "-7-6*2+34/(-3-14)+(((56+34)*(-3)-70)*2)+150.6/(-2)";
+//        ((34/(-3)+(443)*23/5)(-12)/7*3)/(-3)
         System.out.println("вы ввели " + stringNumber);
 
         //переводим все унарные минусы в #

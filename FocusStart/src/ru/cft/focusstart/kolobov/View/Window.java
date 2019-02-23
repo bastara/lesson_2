@@ -1,5 +1,9 @@
 package ru.cft.focusstart.kolobov.View;
 
+import ru.cft.focusstart.kolobov.Model.BracketsMyException;
+import ru.cft.focusstart.kolobov.Model.Calculator;
+import ru.cft.focusstart.kolobov.Model.NullOperationsMyException;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,17 +18,9 @@ public class Window extends JFrame {
 
         GridBagConstraints c = new GridBagConstraints();
 
-//        JLabel inputLabel = new JLabel("Введите выражение");
-//        JLabel printLabel = new JLabel("Полученный результат");
-        JLabel equal = new JLabel("=");
-
         JTextField inputField = new JTextField(30);
         JTextField printField = new JTextField(15);
         printField.setEditable(false);
-
-//        JButton myButton = new JButton("Рассчитать");
-//        JButton myButtonClear = new JButton("Очистить");
-
 
         JButton myButton0 = new JButton("0");
         JButton myButton1 = new JButton("1");
@@ -138,7 +134,9 @@ public class Window extends JFrame {
 
         myButton0.addActionListener(e -> {
             String stringNumber = inputField.getText();
-            stringNumber += "0";
+            if (!stringNumber.equals("0")) {
+                stringNumber += "0";
+            }
             inputField.setText(stringNumber);
         });
 
@@ -198,25 +196,47 @@ public class Window extends JFrame {
 
         myButtonSum.addActionListener(e -> {
             String stringNumber = inputField.getText();
-            stringNumber += "+";
+            if (!stringNumber.equals("")) {
+                char s = stringNumber.charAt(stringNumber.length() - 1);
+                if (!(s == '+' || s == '-' || s == '*' || s == '/' || s == '(')) {
+                    stringNumber += "+";
+                }
+            }
             inputField.setText(stringNumber);
         });
 
         myButtonSub.addActionListener(e -> {
             String stringNumber = inputField.getText();
-            stringNumber += "-";
+            if (!stringNumber.equals("")) {
+                char s = stringNumber.charAt(stringNumber.length() - 1);
+                if (!(s == '+' || s == '-' || s == '*' || s == '/')) {
+                    stringNumber += "-";
+                }
+            } else {
+                stringNumber += "-";
+            }
             inputField.setText(stringNumber);
         });
 
         myButtonMul.addActionListener(e -> {
             String stringNumber = inputField.getText();
-            stringNumber += "*";
+            if (!stringNumber.equals("")) {
+                char s = stringNumber.charAt(stringNumber.length() - 1);
+                if (!(s == '+' || s == '-' || s == '*' || s == '/' || s == '(')) {
+                    stringNumber += "*";
+                }
+            }
             inputField.setText(stringNumber);
         });
 
         myButtonDiv.addActionListener(e -> {
             String stringNumber = inputField.getText();
-            stringNumber += "/";
+            if (!stringNumber.equals("")) {
+                char s = stringNumber.charAt(stringNumber.length() - 1);
+                if (!(s == '+' || s == '-' || s == '*' || s == '/' || s == '(')) {
+                    stringNumber += "/";
+                }
+            }
             inputField.setText(stringNumber);
         });
 
@@ -248,20 +268,24 @@ public class Window extends JFrame {
         });
 
 
-//        myButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                String stringNumber = inputField.getText();
-////                stringNumber = getInBrackets(stringNumber);
-////
-////                //вывод результата
-////                String tmpNumber = inBrackets(stringNumber);
-////                String result = (tmpNumber.charAt(0) == '#') ? "-" + tmpNumber.substring(1) : tmpNumber;
-////                double convertToFullFormat = Double.parseDouble(result);
-////                NumberFormat nf = new DecimalFormat("#.#############");
-////                printField.setText(nf.format(convertToFullFormat));
-//
-//            }
-//        });
+        myButtonEqv.addActionListener(e -> {
+            String stringNumber = inputField.getText();
+            char s = stringNumber.charAt(stringNumber.length() - 1);
+            if (s == '+' || s == '-' || s == '*' || s == '/') {
+                printField.setText("удалите лишнюю операцию");
+            } else {
+                try {
+                    stringNumber = new Calculator().getInBrackets(stringNumber);
+                } catch (ArithmeticException exc) {
+                    stringNumber = exc.getMessage();
+                } catch (NullOperationsMyException exc) {
+                    stringNumber = exc.getMessage();
+                } catch (BracketsMyException exc) {
+                    stringNumber = exc.getMessage();
+                }
+                printField.setText(stringNumber);
+            }
+
+        });
     }
 }
