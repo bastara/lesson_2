@@ -11,7 +11,7 @@ public class Window extends JFrame {
     public Window() {
         JFrame frame = new JFrame("FocusStart calculator");
 
-        frame.setSize(600, 550);
+        frame.setSize(400, 240);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new GridBagLayout());
@@ -276,11 +276,7 @@ public class Window extends JFrame {
             } else {
                 try {
                     stringNumber = new Calculator().getInBrackets(stringNumber);
-                } catch (ArithmeticException exc) {
-                    stringNumber = exc.getMessage();
-                } catch (NullOperationsMyException exc) {
-                    stringNumber = exc.getMessage();
-                } catch (BracketsMyException exc) {
+                } catch (ArithmeticException | NullOperationsMyException | BracketsMyException exc) {
                     stringNumber = exc.getMessage();
                 }
                 printField.setText(stringNumber);

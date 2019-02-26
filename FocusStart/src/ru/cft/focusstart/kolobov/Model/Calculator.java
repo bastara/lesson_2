@@ -55,16 +55,12 @@ public class Calculator {
 
             String tmpString;
             String brackets = stringNumber.substring(countOpenBracket + 1, countCloseBracket);
-            int lengthArray = stringNumber.length();
             if (countOpenBracket > 0) {
                 tmpString = stringNumber.substring(0, countOpenBracket) + inBracketsOperations(brackets);
-                if (countCloseBracket != lengthArray) {
-                    stringNumber = tmpString + stringNumber.substring(countCloseBracket + 1);
-                }
+                stringNumber = tmpString + stringNumber.substring(countCloseBracket + 1);
             } else {
                 tmpString = inBracketsOperations(brackets);
-                stringNumber = (countCloseBracket != lengthArray) ? tmpString + stringNumber.substring(countCloseBracket + 1) :
-                        tmpString;
+                stringNumber = tmpString + stringNumber.substring(countCloseBracket + 1);
             }
         }
         //результат в скобках
